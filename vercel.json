@@ -1,0 +1,23 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "builds": [
+    { "src": "api/data.cjs", "use": "@vercel/node" },
+    { "src": "api/admin-data.cjs", "use": "@vercel/node" },
+    { "src": "api/admin-upload-image.cjs", "use": "@vercel/node" },
+    { "src": "api/animal-image.cjs", "use": "@vercel/node" },
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "client/dist" }
+    }
+  ],
+  "routes": [
+    { "src": "/api/admin/upload-image", "dest": "/api/admin-upload-image.cjs" },
+    { "src": "/api/admin/data", "dest": "/api/admin-data.cjs" },
+    { "src": "/api/animal-image", "dest": "/api/animal-image.cjs" },
+    { "src": "/api/data", "dest": "/api/data.cjs" },
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
+}

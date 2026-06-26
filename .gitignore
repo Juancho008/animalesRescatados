@@ -1,0 +1,13 @@
+node_modules/
+client/node_modules/
+client/dist/
+.vite/
+.env
+.env.local
+.dev.vars
+.wrangler/
+server/uploads/
+server/data.local.json
+*.log
+.DS_Store
+.vercel/

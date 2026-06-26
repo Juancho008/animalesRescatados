@@ -1,0 +1,132 @@
+{
+  "site": {
+    "name": "Huellas con Historia",
+    "tagline": "Cada rescate es una segunda oportunidad",
+    "heroTitle": "Damos una segunda oportunidad a quienes más lo necesitan",
+    "heroSubtitle": "Rescatamos, curamos y buscamos un hogar para perros y gatos en situación de calle. Conocé sus historias y sumate a cambiar finales.",
+    "whatsapp": "5491100000000",
+    "instagram": "https://instagram.com",
+    "email": "contacto@huellasconhistoria.org",
+    "donationLink": "",
+    "stats": {
+      "rescatados": "320+",
+      "adoptados": "210+",
+      "voluntarios": "45"
+    }
+  },
+  "sections": {
+    "antes-despues": {
+      "label": "Antes y Después",
+      "emoji": "✨",
+      "description": "Transformaciones que demuestran el poder del amor y el cuidado."
+    },
+    "rescatado": {
+      "label": "Rescatados",
+      "emoji": "🆘",
+      "description": "Llegaron de la calle y hoy están a salvo con nosotros."
+    },
+    "recuperacion": {
+      "label": "En Recuperación",
+      "emoji": "💊",
+      "description": "Reciben tratamiento veterinario y mucho cariño para sanar."
+    },
+    "adopcion": {
+      "label": "En Adopción",
+      "emoji": "🏡",
+      "description": "Están listos para encontrar una familia para siempre."
+    },
+    "post-adopcion": {
+      "label": "Post Adopción",
+      "emoji": "❤️",
+      "description": "Felices en sus nuevos hogares. ¡Final feliz logrado!"
+    }
+  },
+  "animals": [
+    {
+      "id": "seed-1",
+      "name": "Toby",
+      "status": "antes-despues",
+      "species": "Perro",
+      "age": "3 años",
+      "tags": ["destacado"],
+      "beforeImage": "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=900&q=80",
+      "afterImage": "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=900&q=80",
+      "description": "Lo encontramos desnutrido bajo la lluvia. Hoy es pura energía.",
+      "story": "Toby fue rescatado en pleno invierno, muy débil y asustado. Tras meses de recuperación, recuperó su peso, su brillo y sus ganas de jugar.",
+      "createdAt": "2024-01-10T00:00:00.000Z"
+    },
+    {
+      "id": "seed-2",
+      "name": "Luna",
+      "status": "antes-despues",
+      "species": "Gato",
+      "age": "2 años",
+      "tags": [],
+      "beforeImage": "https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=900&q=80",
+      "afterImage": "https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=900&q=80",
+      "description": "De gatita herida a reina de la casa.",
+      "story": "Luna llegó con una herida en la pata. Hoy está sana y es la más mimosa del refugio.",
+      "createdAt": "2024-02-01T00:00:00.000Z"
+    },
+    {
+      "id": "seed-3",
+      "name": "Rocco",
+      "status": "rescatado",
+      "species": "Perro",
+      "age": "1 año",
+      "tags": ["nuevo"],
+      "image": "https://images.unsplash.com/photo-1561037404-61cd46aa615b?auto=format&fit=crop&w=900&q=80",
+      "description": "Rescatado de la calle hace pocos días, ya está a salvo.",
+      "story": "Rocco fue encontrado deambulando cerca de una ruta. Está sano y muy cariñoso.",
+      "createdAt": "2024-03-05T00:00:00.000Z"
+    },
+    {
+      "id": "seed-4",
+      "name": "Mia",
+      "status": "recuperacion",
+      "species": "Gato",
+      "age": "6 meses",
+      "tags": [],
+      "image": "https://images.unsplash.com/photo-1495360010541-f48722b34f7d?auto=format&fit=crop&w=900&q=80",
+      "description": "En tratamiento por una infección, evolucionando muy bien.",
+      "story": "Mia está recibiendo antibióticos y controles veterinarios. Pronto estará lista para adopción.",
+      "createdAt": "2024-03-20T00:00:00.000Z"
+    },
+    {
+      "id": "seed-5",
+      "name": "Simón",
+      "status": "adopcion",
+      "species": "Perro",
+      "age": "2 años",
+      "tags": ["destacado"],
+      "image": "https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?auto=format&fit=crop&w=900&q=80",
+      "description": "Sociable, vacunado y castrado. Busca su familia ideal.",
+      "story": "Simón se lleva bien con otros perros y con niños. Está listo para dar amor en su nuevo hogar.",
+      "createdAt": "2024-04-01T00:00:00.000Z"
+    },
+    {
+      "id": "seed-6",
+      "name": "Nina",
+      "status": "adopcion",
+      "species": "Gato",
+      "age": "1 año",
+      "tags": [],
+      "image": "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=900&q=80",
+      "description": "Tranquila y juguetona, ideal para departamento.",
+      "story": "Nina es independiente pero muy cariñosa. Está esperando una familia paciente y amorosa.",
+      "createdAt": "2024-04-10T00:00:00.000Z"
+    },
+    {
+      "id": "seed-7",
+      "name": "Thor",
+      "status": "post-adopcion",
+      "species": "Perro",
+      "age": "4 años",
+      "tags": [],
+      "image": "https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?auto=format&fit=crop&w=900&q=80",
+      "description": "Adoptado y feliz junto a su nueva familia.",
+      "story": "Thor encontró su hogar para siempre. Hoy disfruta de paseos diarios y mucho amor.",
+      "createdAt": "2024-05-01T00:00:00.000Z"
+    }
+  ]
+}

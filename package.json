@@ -1,0 +1,29 @@
+{
+  "name": "animales-rescatados",
+  "version": "1.0.0",
+  "description": "Sitio web para animales rescatados (antes/después, en recuperación, en adopción y post adopción) con panel de administración. React + Node + Cloudflare Workers/KV, listo para Vercel.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "concurrently -n server,client -c magenta,cyan \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:server": "node --watch server/index.js",
+    "dev:client": "npm --prefix client run dev",
+    "build": "npm --prefix client install && npm --prefix client run build",
+    "vercel-build": "npm --prefix client install && npm --prefix client run build",
+    "preview": "npm --prefix client run preview",
+    "kv:sync": "node scripts/sync-kv.mjs",
+    "worker:dev": "wrangler dev",
+    "worker:deploy": "wrangler deploy",
+    "start": "node server/index.js",
+    "install:all": "npm install && npm --prefix client install"
+  },
+  "devDependencies": {
+    "compression": "^1.7.5",
+    "concurrently": "^9.1.2",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "wrangler": "^4.14.0"
+  }
+}

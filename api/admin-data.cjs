@@ -1,0 +1,54 @@
+const { workerFetch, checkAdminPassword } = require("./_worker-proxy.cjs");
+
+async function readRawBody(req) {
+  if (req.body) {
+    return typeof req.body === "string" ? req.body : JSON.stringify(req.body);
+  }
+  const chunks = [];
+  for await (const chunk of req) chunks.push(chunk);
+  return Buffer.concat(chunks).toString();
+}
+
+function sendOptions(res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, PUT, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type");
+  return res.status(204).end();
+}
+
+module.exports = async (req, res) => {
+  if (req.method === "OPTIONS") return sendOptions(res);
+
+  const auth = checkAdminPassword(req);
+  if (!auth.ok) {
+    return res.status(auth.error.includes("Falta") ? 500 : 401).json({ error: auth.error });
+  }
+
+  if (req.method === "GET") {
+    try {
+      const response = await workerFetch("/data.json", { method: "GET", useHmac: true });
+      const body = await response.text();
+      res.setHeader("Content-Type", "application/json; charset=utf-8");
+      res.setHeader("Cache-Control", "no-store, must-revalidate");
+      return res.status(response.status).send(body);
+    } catch (err) {
+      console.error("[admin/data GET]", err);
+      return res.status(502).json({ error: "No se pudieron leer los datos" });
+    }
+  }
+
+  if (req.method === "PUT") {
+    try {
+      const body = await readRawBody(req);
+      const response = await workerFetch("/api/data", { method: "PUT", body });
+      const text = await response.text();
+      res.setHeader("Content-Type", "application/json; charset=utf-8");
+      return res.status(response.status).send(text);
+    } catch (err) {
+      console.error("[admin/data PUT]", err);
+      return res.status(502).json({ error: "No se pudieron guardar los datos" });
+    }
+  }
+
+  return res.status(405).json({ error: "Método no permitido" });
+};

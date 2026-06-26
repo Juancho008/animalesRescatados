@@ -1,0 +1,19 @@
+# Cloudflare Workers — API de animales rescatados con KV
+# Docs: https://developers.cloudflare.com/kv/
+
+name = "animales-rescatados-api"
+main = "worker/src/index.js"
+compatibility_date = "2024-11-01"
+
+# URL pública del Worker (la usa Vercel y el script kv:sync)
+workers_dev = true
+preview_urls = false
+
+# Namespace KV: rescateMascotas
+[[kv_namespaces]]
+binding = "KV_BINDING"
+id = "ff60567b3f7844d480d5030ff62c422f"
+
+# Secretos (no van en este archivo, se cargan con wrangler):
+#   wrangler secret put ADMIN_TOKEN            -> token para escribir (PUT/POST/DELETE)
+#   wrangler secret put DATA_HMAC_SECRET       -> secreto HMAC compartido con Vercel
