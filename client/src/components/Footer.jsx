@@ -26,7 +26,7 @@ export default function Footer({ site }) {
       </div>
 
       <div className="footer-bottom">
-        <span className="brand-mark">🐾</span>
+        <img className="footer-logo" src={site?.logo || "/logo.png"} alt={site?.name || "Ambulancia de Mascotas"} />
         <p>
           {site?.name || "Huellas con Historia"} ·{" "}
           {site?.email && <a href={`mailto:${site.email}`}>{site.email}</a>}

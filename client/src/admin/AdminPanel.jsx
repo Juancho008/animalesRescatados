@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { DEFAULT_SECTIONS, SECTION_ORDER } from "../api.js";
 import AnimalEditor from "./AnimalEditor.jsx";
+import BannerEditor from "./BannerEditor.jsx";
 
 const STORAGE_KEY = "ar_admin_token";
 
@@ -60,6 +61,7 @@ export default function AdminPanel() {
       setData({
         site: parsed.site || {},
         sections: { ...DEFAULT_SECTIONS, ...(parsed.sections || {}) },
+        banners: Array.isArray(parsed.banners) ? parsed.banners : [],
         animals: Array.isArray(parsed.animals) ? parsed.animals : [],
       });
       setDirty(false);
@@ -168,6 +170,9 @@ export default function AdminPanel() {
         <button className={tab === "animals" ? "active" : ""} onClick={() => setTab("animals")}>
           🐾 Animales
         </button>
+        <button className={tab === "banner" ? "active" : ""} onClick={() => setTab("banner")}>
+          🖼️ Banner
+        </button>
         <button className={tab === "site" ? "active" : ""} onClick={() => setTab("site")}>
           ⚙️ Sitio
         </button>
@@ -186,6 +191,15 @@ export default function AdminPanel() {
             sections={data.sections}
             token={token}
             onChange={(animals) => update({ ...data, animals })}
+          />
+        )}
+
+        {tab === "banner" && (
+          <BannerEditor
+            banners={data.banners}
+            sections={data.sections}
+            token={token}
+            onChange={(banners) => update({ ...data, banners })}
           />
         )}
 

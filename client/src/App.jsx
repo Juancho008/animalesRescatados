@@ -2,7 +2,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { fetchData, SECTION_ORDER, DEFAULT_SECTIONS } from "./api.js";
 import Loader from "./components/Loader.jsx";
 import Header from "./components/Header.jsx";
-import Hero from "./components/Hero.jsx";
+import BannerCarousel from "./components/BannerCarousel.jsx";
+import StatsStrip from "./components/StatsStrip.jsx";
 import Section from "./components/Section.jsx";
 import AnimalModal from "./components/AnimalModal.jsx";
 import Footer from "./components/Footer.jsx";
@@ -44,12 +45,17 @@ export default function App() {
     if (el) sectionRefs.current[id] = el;
   };
 
-  const scrollTo = (id) => {
-    if (id === "top") {
+  const scrollTo = (target) => {
+    if (!target || target === "top") {
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
-    sectionRefs.current[id]?.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (/^https?:\/\//i.test(target)) {
+      window.open(target, "_blank", "noopener");
+      return;
+    }
+    const el = sectionRefs.current[target] || document.getElementById(target);
+    el?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   if (loading) {
@@ -76,15 +82,13 @@ export default function App() {
   }
 
   const hasAnimals = (data?.animals || []).length > 0;
+  const banners = data?.banners || [];
 
   return (
     <div className="app">
       <Header site={site} sections={sections} onNavigate={scrollTo} />
-      <Hero
-        site={site}
-        onPrimary={() => scrollTo("adopcion")}
-        onSecondary={() => scrollTo("antes-despues")}
-      />
+      <BannerCarousel banners={banners} onCta={scrollTo} />
+      <StatsStrip site={site} />
 
       <main className="sections">
         {!hasAnimals && (

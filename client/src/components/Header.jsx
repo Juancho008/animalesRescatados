@@ -27,8 +27,11 @@ export default function Header({ site, sections, onNavigate }) {
     >
       <div className="header-inner">
         <button className="brand" onClick={() => go("top")}>
-          <span className="brand-mark">🐾</span>
-          <span className="brand-name">{site?.name || "Huellas con Historia"}</span>
+          <img
+            className="brand-logo"
+            src={site?.logo || "/logo.png"}
+            alt={site?.name || "Ambulancia de Mascotas"}
+          />
         </button>
 
         <nav className={`nav${open ? " nav--open" : ""}`}>
