@@ -158,7 +158,7 @@ button {
   right: 0;
   z-index: 50;
   transition: background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
-  padding: 1rem 0;
+  padding: 0.25rem 0;
 }
 .header--scrolled {
   background: rgba(255, 247, 242, 0.85);
@@ -186,20 +186,17 @@ button {
   filter: drop-shadow(0 4px 8px rgba(232, 80, 44, 0.3));
 }
 .brand-logo {
-  height: 54px;
+  height: 104px;
   width: auto;
   display: block;
-  background: #fff;
-  border-radius: 14px;
-  padding: 5px 9px;
-  box-shadow: var(--shadow-sm);
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.18));
   transition: transform 0.25s ease;
 }
 .brand:hover .brand-logo {
-  transform: scale(1.04);
+  transform: scale(1.05);
 }
 .footer-logo {
-  width: 130px;
+  width: 170px;
   height: auto;
   margin-bottom: 0.4rem;
 }
@@ -232,11 +229,15 @@ button {
   padding: 0.6rem 1.3rem;
   border-radius: 999px;
   background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
-  color: #063;
   font-weight: 700;
   color: #04443d;
   box-shadow: 0 8px 18px rgba(45, 212, 191, 0.3);
   transition: transform 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
 }
 .nav-cta:hover {
   transform: translateY(-2px);
@@ -1419,8 +1420,7 @@ button {
     z-index: 46;
   }
   .brand-logo {
-    height: 44px;
-    padding: 4px 7px;
+    height: 80px;
   }
 }
 
