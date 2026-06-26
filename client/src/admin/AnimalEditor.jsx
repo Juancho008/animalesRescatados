@@ -1,8 +1,14 @@
 import { useState } from "react";
-import { SECTION_ORDER } from "../api.js";
+import { SECTION_ORDER, resolveImage } from "../api.js";
 import ImageInput from "./ImageInput.jsx";
 
 const TAG_OPTIONS = ["nuevo", "destacado", "urgente"];
+
+function AnimalThumb({ animal }) {
+  const thumb = resolveImage(animal.image || animal.afterImage || animal.beforeImage);
+  if (!thumb) return <span>🐾</span>;
+  return <img src={thumb} alt={animal.name} />;
+}
 
 function emptyAnimal() {
   return {
@@ -77,21 +83,7 @@ export default function AnimalEditor({ animals, sections, token, onChange }) {
         {visible.map((a) => (
           <div className="editor-item" key={a.id}>
             <div className="editor-item-thumb">
-              {a.image || a.afterImage || a.beforeImage ? (
-                <img
-                  src={
-                    /^https?:/i.test(a.image || a.afterImage || a.beforeImage)
-                      ? a.image || a.afterImage || a.beforeImage
-                      : `/api/animal-image?id=${(a.image || a.afterImage || a.beforeImage).replace(
-                          "/api/animal-image?id=",
-                          ""
-                        )}`
-                  }
-                  alt={a.name}
-                />
-              ) : (
-                <span>🐾</span>
-              )}
+              <AnimalThumb animal={a} />
             </div>
             <div className="editor-item-info">
               <strong>{a.name || "Sin nombre"}</strong>
