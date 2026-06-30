@@ -2,16 +2,168 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%BE%3C/text%3E%3C/svg%3E" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#ff6b4a" />
+
+    <!-- Favicon / iconos -->
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+    <link rel="shortcut icon" href="/logo.png" />
+    <meta name="theme-color" content="#e8502c" />
+
+    <!-- SEO básico -->
+    <title>Ambulancia de Mascotas · Rescatando Huellitas</title>
     <meta
       name="description"
-      content="Refugio de animales rescatados: conocé sus historias de antes y después, animales en recuperación, en adopción y sus finales felices."
+      content="Ambulancia de Mascotas — Rescatando Huellitas. Rescatamos, curamos y buscamos hogar para perros y gatos. Conocé sus historias de antes y después, animales en recuperación, en adopción y sus finales felices."
     />
-    <title>Huellas con Historia · Animales Rescatados</title>
+    <meta
+      name="keywords"
+      content="rescate animales, adopción perros, adopción gatos, animales rescatados, refugio, mascotas, antes y después, donaciones mascotas"
+    />
+    <meta name="author" content="Ambulancia de Mascotas" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="/" />
+
+    <!-- Open Graph (Facebook, WhatsApp, etc.) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Ambulancia de Mascotas" />
+    <meta property="og:title" content="Ambulancia de Mascotas · Rescatando Huellitas" />
+    <meta
+      property="og:description"
+      content="Rescatamos, curamos y buscamos hogar para perros y gatos. Conocé sus historias y sumate a cambiar finales."
+    />
+    <meta property="og:image" content="/logo.png" />
+    <meta property="og:locale" content="es_AR" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ambulancia de Mascotas · Rescatando Huellitas" />
+    <meta
+      name="twitter:description"
+      content="Rescatamos, curamos y buscamos hogar para perros y gatos. Conocé sus historias y sumate a cambiar finales."
+    />
+    <meta name="twitter:image" content="/logo.png" />
+
+    <!-- Pantalla de carga (se muestra al instante, antes de React; se quita cuando todo cargó) -->
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: #fff7f2;
+      }
+      #splash {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 28px;
+        background: radial-gradient(circle at 50% 35%, #fff1ea 0%, #fff7f2 55%, #ffe9e1 100%);
+        transition: opacity 0.55s ease, visibility 0.55s ease;
+      }
+      #splash.splash--hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+      .splash-logo-wrap {
+        position: relative;
+        display: grid;
+        place-items: center;
+        width: 190px;
+        height: 190px;
+      }
+      .splash-ring {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: 3px solid rgba(232, 80, 44, 0.15);
+        border-top-color: #e8502c;
+        border-right-color: #ff6b4a;
+        animation: splash-spin 1.05s linear infinite;
+      }
+      .splash-ring--2 {
+        inset: 18px;
+        border: 3px solid rgba(45, 212, 191, 0.12);
+        border-bottom-color: #14b8a6;
+        animation: splash-spin 1.6s linear infinite reverse;
+      }
+      .splash-logo {
+        width: 118px;
+        height: auto;
+        animation: splash-pulse 1.8s ease-in-out infinite;
+        filter: drop-shadow(0 10px 24px rgba(232, 80, 44, 0.22));
+      }
+      .splash-bar {
+        width: 180px;
+        height: 6px;
+        border-radius: 999px;
+        background: rgba(232, 80, 44, 0.14);
+        overflow: hidden;
+        position: relative;
+      }
+      .splash-bar::after {
+        content: "";
+        position: absolute;
+        left: -40%;
+        top: 0;
+        height: 100%;
+        width: 40%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #ff6b4a, #e8502c);
+        animation: splash-slide 1.2s ease-in-out infinite;
+      }
+      .splash-text {
+        font-family: "Poppins", "Segoe UI", system-ui, sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: 0.04em;
+        color: #8a7f8c;
+      }
+      @keyframes splash-spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes splash-pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.07);
+        }
+      }
+      @keyframes splash-slide {
+        0% {
+          left: -40%;
+        }
+        100% {
+          left: 100%;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .splash-ring,
+        .splash-ring--2,
+        .splash-logo,
+        .splash-bar::after {
+          animation: none;
+        }
+      }
+    </style>
   </head>
   <body>
+    <div id="splash">
+      <div class="splash-logo-wrap">
+        <span class="splash-ring"></span>
+        <span class="splash-ring splash-ring--2"></span>
+        <img class="splash-logo" src="/logo.png" alt="Ambulancia de Mascotas" />
+      </div>
+      <div class="splash-bar"></div>
+      <p class="splash-text">Rescatando Huellitas…</p>
+    </div>
+
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

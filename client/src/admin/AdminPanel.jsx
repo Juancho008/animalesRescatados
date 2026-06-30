@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { DEFAULT_SECTIONS, SECTION_ORDER } from "../api.js";
+import { DEFAULT_SECTIONS, SECTION_ORDER, hideSplash } from "../api.js";
 import AnimalEditor from "./AnimalEditor.jsx";
 import BannerEditor from "./BannerEditor.jsx";
 
@@ -18,6 +18,10 @@ export default function AdminPanel() {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [dirty, setDirty] = useState(false);
+
+  useEffect(() => {
+    hideSplash();
+  }, []);
 
   useEffect(() => {
     if (token) loadData();

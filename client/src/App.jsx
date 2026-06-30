@@ -1,6 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { fetchData, SECTION_ORDER, DEFAULT_SECTIONS } from "./api.js";
-import Loader from "./components/Loader.jsx";
+import {
+  fetchData,
+  SECTION_ORDER,
+  DEFAULT_SECTIONS,
+  collectImageUrls,
+  preloadImages,
+  hideSplash,
+} from "./api.js";
 import Header from "./components/Header.jsx";
 import BannerCarousel from "./components/BannerCarousel.jsx";
 import StatsStrip from "./components/StatsStrip.jsx";
@@ -10,17 +16,28 @@ import Footer from "./components/Footer.jsx";
 
 export default function App() {
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [ready, setReady] = useState(false);
   const [error, setError] = useState("");
   const [selected, setSelected] = useState(null);
   const sectionRefs = useRef({});
 
   useEffect(() => {
     let active = true;
-    fetchData()
-      .then((d) => active && setData(d))
-      .catch((e) => active && setError(e.message))
-      .finally(() => active && setLoading(false));
+    (async () => {
+      try {
+        const d = await fetchData();
+        if (!active) return;
+        setData(d);
+        await preloadImages(collectImageUrls(d));
+        if (!active) return;
+        setReady(true);
+        hideSplash();
+      } catch (e) {
+        if (!active) return;
+        setError(e.message);
+        hideSplash();
+      }
+    })();
     return () => {
       active = false;
     };
@@ -58,14 +75,6 @@ export default function App() {
     el?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  if (loading) {
-    return (
-      <div className="screen-center">
-        <Loader />
-      </div>
-    );
-  }
-
   if (error) {
     return (
       <div className="screen-center">
@@ -80,6 +89,8 @@ export default function App() {
       </div>
     );
   }
+
+  if (!data || !ready) return null;
 
   const hasAnimals = (data?.animals || []).length > 0;
   const banners = data?.banners || [];
